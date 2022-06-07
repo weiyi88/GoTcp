@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/binary"
-	"fmt"
 )
 
 // Encode 将消息编码
@@ -49,8 +48,4 @@ func Decode(reader *bufio.Reader) (string, error) {
 		return "", err
 	}
 	return string(pack[4:]), nil // 剔除前4字节
-}
-
-func Test() {
-	fmt.Println("hereeee")
 }
