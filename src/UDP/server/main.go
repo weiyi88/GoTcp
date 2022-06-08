@@ -30,7 +30,7 @@ func main() {
 		fmt.Println(data[:])
 		reply := strings.ToUpper(string(data[:n])) // 全部大写
 		// 发送数据
-		conn.WriteToUDP([]byte(reply), addr)
+		conn.WriteToUDP([]byte(reply), addr) // 转化成字节类型切片
 
 	}
 }

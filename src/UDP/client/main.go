@@ -21,7 +21,7 @@ func main() {
 	var reply [1024]byte
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		fmt.Print("请输入内容")
+		fmt.Print("请输入内容:")
 		msg, _ := reader.ReadString('\n') //直到读到\n结束
 		socket.Write([]byte(msg))
 		// 收到回复的数据
@@ -30,6 +30,6 @@ func main() {
 			fmt.Println("redv reply msg failed ,err:", err)
 			return
 		}
-		fmt.Println("收到回复信息，", string(reply[:n]))
+		fmt.Println("收到回复信息:", string(reply[:n]))
 	}
 }
