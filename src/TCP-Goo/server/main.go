@@ -5,21 +5,22 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"package/protocol"
 )
 
 func process(conn net.Conn) {
 	defer conn.Close()
 	reader := bufio.NewReader(conn)
-	var buf [1024]byte
 	for {
-		n, err := reader.Read(buf[:])
+		recvStr, err := protocol.Decode(reader)
 		if err == io.EOF {
-			break
+			return // 结尾就退出
 		}
 		if err != nil {
-			fmt.Println("read from client failed , err:", err)
+			fmt.Println("decode faild ,err:", err)
+			return
 		}
-		fmt.Println("收到信息：", string(buf[:n]))
+		fmt.Println("收到信息：", string(recvStr))
 	}
 }
 
